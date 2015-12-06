@@ -41,6 +41,7 @@ QrResolver.prototype = {
 	    }.bind(this)
 	).catch(
 	    function(error){
+		console.log(this);
 		console.log(error);
 	    }
 	)	

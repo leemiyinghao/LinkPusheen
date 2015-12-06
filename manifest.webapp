@@ -14,13 +14,15 @@
     },
     "type": "privileged",
     "permissions": {
-	"audio-capture": {
-	    "description": "Required to capture audio using getUserMedia()"
-	},
 	"video-capture": {
 	    "description": "Required to capture video using getUserMedia()"
 	},
-	"systemXHR":{}
+	"camera": {
+	    "description": "Required to capture video using getUserMedia()"
+	},
+	"systemXHR":{
+	    "description": "Required to capture video using getUserMedia()"
+	}
     },
     "activities": {
 	"share":{
