@@ -29,7 +29,7 @@ QrResolver.prototype = {
 	alert(msg);
     },
     initWebCam: function(){
-	navigator.mediaDevices.getUserMedia({audio: false, video: { width: 400, height: 400 }}).then(
+	navigator.mediaDevices.getUserMedia({audio: false, video: true}).then(
 	    function(mediaStream){
 		console.log('success!');
 		this.video = document.querySelector("#video");

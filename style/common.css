@@ -23,6 +23,16 @@ section[role="region"] > header:first-child h1 {
     position: absolute;
     width: 100%;
 }
+video{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width:100%;
+    min-height:100%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+}
 .hidden{
     display: none;
 }
