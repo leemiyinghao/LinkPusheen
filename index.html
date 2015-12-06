@@ -6,27 +6,47 @@
 
     <title>Hello World</title>
 
-    <style>
-      body {
-        border: 1px solid black;
-      }
-      video {
-      width: 100%;
-      }
-    </style>
-
-    <!-- Inline scripts are forbidden in Firefox OS apps (CSP restrictions),
-         so we use a script file. -->
-    <script src="llqrcode.js" defer></script>
+    <link href="buildingBlocks/style/headers.css" rel="stylesheet" type="text/css">
+    <link href="buildingBlocks/style/drawer.css" rel="stylesheet" type="text/css">
+    <link href="util.css" rel="stylesheet" type="text/css">
+    <link href="style/common.css" rel="stylesheet" type="text/css">
+    <script src="js/llqrcode.js"></script>
+    <script src="js/qrreader.js"></script>
+    <script src="js/socket.io.js"></script>
+    <script src="js/qrcode.min.js"></script>
     <script src="app.js" defer></script>
 
   </head>
 
   <body>
-    <!-- This code is in the public domain. Enjoy! -->
-    <h1>Hello World</h1>
-    <video id="video" autoplay></video>
-    <canvas id="qr-canvas"></canvas>
+    <section data-type="sidebar">
+      <header>
+	<menu type="toolbar">
+	  <a href="#content"><span class="icon icon-add">add</span></a>
+	</menu>
+      </header>
+      <nav>
+	<ul>
+	  <li><a href="#howto">How To Use</a></li>
+	  <li><a href="#sendlink" id="sendlink">Send A Link</a></li>
+	  <li><a href="#about">About</a></li>
+	</ul>
+      </nav>
+    </section>
+    <section id="drawer" role="region">
+      <header>
+	<h1>Link Pusheen</h1>
+	<a href="#content"><span class="icon icon-menu">hide sidebar</span></a>
+	<a href="#drawer"><span class="icon icon-menu">show sidebar</span></a>
+      </header>
+      <div id="index" role="main">
+	<div id="qrcode"></div>
+      </div>
+      <div id="qrscaner" role="main">
+	<video id="video" autoplay></video>
+	<canvas id="qr-canvas" class="hidden"></canvas>
+      </div>
+    </section>
   </body>
 
 </html>

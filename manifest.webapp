@@ -19,6 +19,17 @@
 	},
 	"video-capture": {
 	    "description": "Required to capture video using getUserMedia()"
+	},
+	"systemXHR":{}
+    },
+    "activities": {
+	"share":{
+	    "filters": {
+		"type": ["url"]
+	    },
+	    "herf": "/index.html",
+	    "disposition": "window",
+	    "returnValue": false
 	}
     }
 }

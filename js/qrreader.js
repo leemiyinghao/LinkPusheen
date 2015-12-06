@@ -45,10 +45,4 @@ QrResolver.prototype = {
 	    }
 	)	
     }
-}
-window.addEventListener("load", function() {
-    qr = new QrResolver();
-    qr.initCanvas(400, 400);
-    qrcode.callback = qr.decodeCallback;
-    qr.initWebCam();
-});
+};

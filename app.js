@@ -1,54 +1,27 @@
-function QrResolver(){
-    this.gCanvas = null;
-    this.gCtx = null;
-    this.video = null;
-}
-QrResolver.prototype = {
-    initCanvas: function(width, height) {
-	gCanvas = document.getElementById("qr-canvas");
-	gCanvas.style.width = width + "px";
-	gCanvas.style.height = height + "px";
-	gCanvas.width = width;
-	gCanvas.height = height;
-	gCtx = gCanvas.getContext("2d");
-	gCtx.clearRect(0, 0, width, height);
-    },
-    captureToCanvas: function(){
-	try {
-	    this.gCtx.drawImage(this.video, 0, 0); //print screen on video, and paste onto gCanvas
-	    try{
-		qrcode.decode();
-	    } catch (error) {
-		console.log(error);
-	    }
-	} catch (error) {
-	    console.log(error);
-	}		
-    },
-    decodeCallback: function(msg){
-	alert(msg);
-    },
-    initWebCam: function(){
-	navigator.mediaDevices.getUserMedia({audio: false, video: { width: 400, height: 400 }}).then(
-	    function(mediaStream){
-		console.log('success!');
-		this.video = document.querySelector("#video");
-		this.video.src = window.URL.createObjectURL(mediaStream);
-		this.video.onloadedmetadata = function(e) {
-		    this.video.play();
-		}.bind(this);
-		setInterval(this.captureToCanvas, 500);
-	    }.bind(this)
-	).catch(
-	    function(error){
-		console.log(error);
-	    }
-	)	
-    }
-}
-window.addEventListener("load", function() {
+var socket = io("http://wugu.longcat.tw/");
+socket.on('giveUrl', function(msg){
+    window.open(msg,"_self");
+});
+socket.on('connect', function(msg){
+console.log(socket);
+    qrDiv = document.querySelector("#qrcode");
+    q = new QRCode(qrDiv, socket.id);
+    console.log(socket.id);
+});
+qrscaner = document.querySelector("#qrscaner");
+index = document.querySelector("#index");
+document.querySelector("a#sendlink").onclick = () => {
+    index.classList.add("hidden");
+    qrscaner.classList.remove("hidden");
     qr = new QrResolver();
     qr.initCanvas(400, 400);
-    qrcode.callback = qr.decodeCallback;
+    qrcode.callback = function(msg){
+	socket.emit("giveUrl", msg+","+"http://ddg.gg/");
+    };
     qr.initWebCam();
+};
+qrscaner.classList.add("hidden");
+screen.orientation.lock('portrait-primary');
+navigator.mozSetMessageHandler('activity', function(activityRequest) {
+    alert(activityRequest);
 });

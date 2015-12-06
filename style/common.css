@@ -1,0 +1,31 @@
+animation: currentToLeft 0.4s forwards;
+@keyframes currentToLeft {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+animation: rightToCurrent 0.4s forwards;
+@keyframes rightToCurrent {
+    0%   { transform: translateX(100%); }
+    100% { transform: translateX(0); }
+}
+animation: leftToCurrent 0.4s forwards;
+@keyframes leftToCurrent {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(0); }
+}
+animation: currentToRight 0.4s forwards;
+@keyframes currentToRight {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(100%); }
+}
+/*Building Block Fix*/
+section[role="region"] > header:first-child h1 {
+    position: absolute;
+    width: 100%;
+}
+.hidden{
+    display: none;
+}
+#qrcode{
+    margin: 15px;
+}
