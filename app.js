@@ -3,6 +3,7 @@ function LinkPusheen(){
     this.page.qrscaner = document.querySelector("#qrscaner");
     this.page.index = document.querySelector("#index");
     this.qrDiv = document.querySelector("#qrcode");
+    this.scanerurl = document.querySelector("#scanerurl");
     this.qrdecoder = null;
     this.qrtag = null;
     this.socket = null;
@@ -51,6 +52,7 @@ LinkPusheen.prototype = {
 	    };
 	}.bind(this);
 	this.qrdecoder.initWebCam();
+	this.scanerurl.innerHTML = url;
     },
     handleEvent: function(event) {
 	switch(event.type) {

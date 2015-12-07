@@ -8,6 +8,7 @@
 
     <link href="buildingBlocks/style/headers.css" rel="stylesheet" type="text/css">
     <link href="buildingBlocks/style/drawer.css" rel="stylesheet" type="text/css">
+    <link href="buildingBlocks/style/buttons.css" rel="stylesheet" type="text/css">
     <link href="util.css" rel="stylesheet" type="text/css">
     <link href="style/common.css" rel="stylesheet" type="text/css">
     <script src="js/llqrcode.js" defer></script>
@@ -18,30 +19,37 @@
   </head>
 
   <body>
-    <section data-type="sidebar">
-      <header>
-	<menu type="toolbar">
-	  <a href="#content"><span class="icon icon-add">add</span></a>
-	</menu>
-      </header>
-      <nav>
-	<ul>
-	  <li><a href="#howto">How To Use</a></li>
-	  <li><a href="#sendlink" id="sendlink">Send A Link</a></li>
-	  <li><a href="#about">About</a></li>
-	</ul>
-      </nav>
-    </section>
-    <section id="drawer" role="region">
-      <header>
-	<h1>Link Pusheen</h1>
-	<a href="#content"><span class="icon icon-menu">hide sidebar</span></a>
-	<a href="#drawer"><span class="icon icon-menu">show sidebar</span></a>
-      </header>
-      <div id="index" role="main">
+    <section id="index" role="region">
+      <section data-type="sidebar">
+	<header>
+	  <menu type="toolbar">
+	    <a href="#content"><span class="icon icon-add">add</span></a>
+	  </menu>
+	</header>
+	<nav>
+	  <ul>
+	    <li><a href="#howto">How To Use</a></li>
+	    <li><a href="#sendlink" id="sendlink">Send A Link</a></li>
+	    <li><a href="#about">About</a></li>
+	  </ul>
+	</nav>
+      </section>
+      <section id="drawer" role="region">
+	<header>
+	  <h1>Link Pusheen</h1>
+	  <a href="#content"><span class="icon icon-menu">hide sidebar</span></a>
+	  <a href="#drawer"><span class="icon icon-menu">show sidebar</span></a>
+	</header>
 	<div id="qrcode"></div>
-      </div>
-      <div id="qrscaner" role="main">
+      </section>
+    </section>
+    <section role="region" id="qrscaner">
+      <header>
+	<h1>QRScaner</h1>
+	<button><span class="icon icon-close">close</span></button>
+      </header>
+      <div role="main">
+	<div id="scanerurl"></div>
 	<video id="video" autoplay></video>
 	<canvas id="sceneoverlay"></canvas>
 	<canvas id="qr-canvas" class="hidden"></canvas>

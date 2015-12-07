@@ -58,3 +58,17 @@ video{
 	transform: translateY(-50%);
     }
 }
+#scanerurl{
+    position: absolute;
+    font-family: Fira Sans;
+    font-style: italic;
+    font-size: 200%;
+    color: #ffffff;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+    bottom: 0px;
+    left: 15px;
+    right: 15px;
+    border-radius: 15px 15px 0 0;
+    z-index: 20;
+}
