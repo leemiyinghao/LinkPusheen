@@ -6,6 +6,7 @@ function LinkPusheen(){
     this.qrdecoder = null;
     this.qrtag = null;
     this.socket = null;
+    this.fromRequest = false;
 }
 LinkPusheen.prototype = {
     __init__: function(){
@@ -39,7 +40,11 @@ LinkPusheen.prototype = {
 	    this.socket.socket.emit("giveUrl", msg + "," + url);
 	    clearInterval(this.qrdecoder.captureTask);
 	    alert("done!");
-	    this.lunchIndex();
+	    if(this.fromRequest){
+		window.close();
+	    }else{
+		this.lunchIndex();
+	    };
 	}.bind(this);
 	this.qrdecoder.initWebCam();
     },
@@ -74,11 +79,10 @@ linkPusheen.lunchIndex();
 if(screen.orientation != null){
     screen.orientation.lock('portrait-primary');
 }
-var act = null;
 if(navigator.mozSetMessageHandler){
     navigator.mozSetMessageHandler('activity', function(activityRequest) {
 	if(activityRequest.source.data.type == "url"){
-	    act = activityRequest;
+	    linkPusheen.fromRequest = true;
 	    linkPusheen.lunchQRScaner(activityRequest.source.data.url);
 	}else{
 	    return false;
