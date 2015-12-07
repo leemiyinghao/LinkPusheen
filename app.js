@@ -2,14 +2,24 @@ function LinkPusheen(){
     this.page = {};
     this.page.qrscaner = document.querySelector("#qrscaner");
     this.page.index = document.querySelector("#index");
+    this.qrDiv = document.querySelector("#qrcode");
     this.qrdecoder = null;
+    this.qrtag = null;
     this.socket = null;
 }
 LinkPusheen.prototype = {
     __init__: function(){
 	this.addListeners();
-	if(screen.orientation)
-	    screen.orientation.lock('portrait-primary');
+	this.qrtag = new QRCode(this.qrDiv);
+	this.socket = new Socket();
+	this.socket.__init__(
+	    ()=>{
+		this.qrtag.makeCode(this.socket.socket.id);
+	    },
+	    (url)=>{
+		window.open(url, "_blank");
+	    }
+	);
     },
     resetUI: function(){
 	for(index in this.page){
@@ -20,25 +30,18 @@ LinkPusheen.prototype = {
 	this.resetUI();
 	this.page.index.classList.remove("hidden");
     },
-    lunchQRScaner: function(){
+    lunchQRScaner: function(url){
+	url = url==null?prompt("url?"):url;
 	this.resetUI();
 	this.page.qrscaner.classList.remove("hidden");
 	this.qrdecoder =  new QrResolver();
-	this.qrdecoder.initCanvas(400, 400);
 	qrcode.callback = function(msg){
-	    this.socket.emit("giveUrl", msg+","+"http://ddg.gg/");
+	    this.socket.socket.emit("giveUrl", msg + "," + url);
+	    clearInterval(this.qrdecoder.captureTask);
+	    alert("done!");
+	    this.lunchIndex();
 	}.bind(this);
 	this.qrdecoder.initWebCam();
-    },
-    initSocket: function(){
-	this.socket = io("http://wugu.longcat.tw/");
-	this.socket.on('giveUrl', function(msg){
-	    window.open(msg,"_self");
-	});
-	this.socket.on('connect', function(msg){
-	    qrDiv = document.querySelector("#qrcode");
-	    q = new QRCode(qrDiv, this.socket.id);
-	}.bind(this));
     },
     handleEvent: function(event) {
 	switch(event.type) {
@@ -52,11 +55,33 @@ LinkPusheen.prototype = {
 	window.addEventListener("click", this, false);
     },
 };
+function Socket(){
+    this.socket = null;
+};
+Socket.prototype = {
+    __init__: function(onConnect, onGetUrl){
+	this.socket = io("http://wugu.longcat.tw/");
+	this.addListeners(onConnect, onGetUrl);
+    },
+    addListeners: function(onConnect, onGetUrl){
+	this.socket.on('giveUrl', onGetUrl);
+	this.socket.on('connect', onConnect);
+    }
+};
 linkPusheen = new LinkPusheen();
 linkPusheen.__init__();
-linkPusheen.initSocket();
 linkPusheen.lunchIndex();
-if(navigator.mozSetMessageHandler)
+if(screen.orientation != null){
+    screen.orientation.lock('portrait-primary');
+}
+var act = null;
+if(navigator.mozSetMessageHandler){
     navigator.mozSetMessageHandler('activity', function(activityRequest) {
-	alert(activityRequest);
+	if(activityRequest.source.data.type == "url"){
+	    act = activityRequest;
+	    linkPusheen.lunchQRScaner(activityRequest.source.data.url);
+	}else{
+	    return false;
+	}
     });
+}
