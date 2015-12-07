@@ -39,3 +39,10 @@ video{
 #qrcode{
     margin: 15px;
 }
+#sceneoverlay{
+    position: absolute;
+    width: 100%;
+    z-index: 15;
+    top:50%;
+    transform: translateY(-50%);
+}

@@ -7,6 +7,7 @@ function LinkPusheen(){
     this.qrtag = null;
     this.socket = null;
     this.fromRequest = false;
+    this.sceneOverlay = null;
 }
 LinkPusheen.prototype = {
     __init__: function(){
@@ -35,6 +36,9 @@ LinkPusheen.prototype = {
 	url = url==null?prompt("url?"):url;
 	this.resetUI();
 	this.page.qrscaner.classList.remove("hidden");
+	this.sceneCover = new SceneCover("sceneoverlay");
+	this.sceneCover.setStyle();
+	this.sceneCover.drawBorder();
 	this.qrdecoder =  new QrResolver();
 	qrcode.callback = function(msg){
 	    this.socket.socket.emit("giveUrl", msg + "," + url);
@@ -73,6 +77,23 @@ Socket.prototype = {
 	this.socket.on('connect', onConnect);
     }
 };
+function SceneCover(id){
+    this.canvas = document.getElementById(id);
+    this.canvas.width = 300;
+    this.canvas.height = 300;
+    this.ctx = this.canvas.getContext("2d");
+}
+SceneCover.prototype = {
+    drawBorder: function(){
+	this.ctx.strokeRect(15,15,270,270);
+	this.ctx.clearRect(0,60,300,180);
+	this.ctx.clearRect(60,0,180,300);
+    },
+    setStyle: function(){
+	this.ctx.lineWidth = 8;
+	this.ctx.strokeStyle = "#666";
+    }
+}
 linkPusheen = new LinkPusheen();
 linkPusheen.__init__();
 linkPusheen.lunchIndex();
