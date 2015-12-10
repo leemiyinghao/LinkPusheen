@@ -9,7 +9,7 @@ function LinkPusheen(){
     this.socket = null;
     this.fromRequest = false;
     this.sceneOverlay = null;
-}
+};
 LinkPusheen.prototype = {
     __init__: function(){
 	this.addListeners();
@@ -57,9 +57,16 @@ LinkPusheen.prototype = {
     handleEvent: function(event) {
 	switch(event.type) {
 	case "click":
-	    if(event.target.id == "sendlink"){
+	    console.log(event.target.id);
+	    switch(event.target.id){
+	    case "sendlink":
 		this.lunchQRScaner();
+		break;
+	    case "closescaner":
+		this.lunchIndex();
+		break;
 	    }
+	    break;
 	}
     },
     addListeners: function(){

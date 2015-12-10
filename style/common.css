@@ -23,21 +23,21 @@ section[role="region"] > header:first-child h1 {
     position: absolute;
     width: 100%;
 }
-video{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width:100%;
-    min-height:100%;
-    width: auto;
-    height: auto;
-    transform: translateX(-50%) translateY(-50%);
-}
 .hidden{
     display: none;
 }
-#qrcode{
-    margin: 15px;
+#index #drawer{
+    text-align: center;
+    background: url("/img/background.jpg") center center;
+    background-size: cover;
+}
+#index #qrcode img{
+    padding: 15px;
+    border-radius: 15px;
+    margin: auto;
+    margin-top: 15px;
+    background: #FFFFFF;
+    box-shadow: #000000 0 0 10px;
 }
 #sceneoverlay{
     position: absolute;
@@ -46,6 +46,14 @@ video{
     z-index: 15;
     left: 50%;
     transform: translateX(-50%);
+}
+video{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: 100%;
+    transform: translateX(-50%) translateY(-50%);
 }
 @media screen and (max-aspect-ratio: 1/1){
     #sceneoverlay{
@@ -56,6 +64,11 @@ video{
 	top:50%;
 	left: 0;
 	transform: translateY(-50%);
+    }
+    video{
+	width: 100%;
+	height: auto;
+	transform: translateX(-50%) translateY(-50%);
     }
 }
 #scanerurl{

@@ -33,13 +33,13 @@ QrResolver.prototype = {
 	this.video.onloadedmetadata = function(e) {
 	    this.initCanvas(this.video.videoWidth, this.video.videoHeight);
 	}.bind(this);
-	this.captureTask = setInterval(this.captureToCanvas.bind(this), 500);
+	this.captureTask = setInterval(this.captureToCanvas.bind(this), 200);
     },
     onWebCamFail: function(error){
 	console.log(error);
     }.bind(this),
     initWebCam: function(){
 	this.video = document.querySelector("#video");
-	navigator.mediaDevices.getUserMedia({audio: false, video: true}).then(this.onWebCamSucess.bind(this), this.onWebCamFail);
+	navigator.mediaDevices.getUserMedia({audio: false, video: {width: 1280, length: 720}}).then(this.onWebCamSucess.bind(this), this.onWebCamFail);
     }
 };
