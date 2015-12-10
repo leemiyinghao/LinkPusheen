@@ -20,7 +20,7 @@ LinkPusheen.prototype = {
 		this.qrtag.makeCode(this.socket.socket.id);
 	    },
 	    (url)=>{
-		window.open(url, "_blank");
+		window.open(url, "_self");
 	    }
 	);
     },
