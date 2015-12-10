@@ -2,6 +2,8 @@ function LinkPusheen(){
     this.page = {};
     this.page.qrscaner = document.querySelector("#qrscaner");
     this.page.index = document.querySelector("#index");
+    this.page.guide = document.querySelector("#guide");
+    this.page.about = document.querySelector("#about");
     this.qrDiv = document.querySelector("#qrcode");
     this.scanerurl = document.querySelector("#scanerurl");
     this.qrdecoder = null;
@@ -54,6 +56,14 @@ LinkPusheen.prototype = {
 	this.qrdecoder.initWebCam();
 	this.scanerurl.innerHTML = url;
     },
+    lunchGuide: function(){
+	this.resetUI();
+	this.page.guide.classList.remove("hidden");
+    },
+    lunchAbout: function(){
+	this.resetUI();
+	this.page.about.classList.remove("hidden");
+    },
     handleEvent: function(event) {
 	switch(event.type) {
 	case "click":
@@ -61,9 +71,21 @@ LinkPusheen.prototype = {
 	    switch(event.target.id){
 	    case "sendlink":
 		this.lunchQRScaner();
+		return false;
+		break;
+	    case "guidelink":
+		this.lunchGuide();
+		return false;
+		break;
+	    case "aboutlink":
+		this.lunchAbout();
+		return false;
 		break;
 	    case "closescaner":
+	    case "closeguide":
+	    case "closeabout":
 		this.lunchIndex();
+		return false;
 		break;
 	    }
 	    break;

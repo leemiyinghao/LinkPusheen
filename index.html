@@ -28,9 +28,9 @@
 	</header>
 	<nav>
 	  <ul>
-	    <li><a href="#howto">How To Use</a></li>
-	    <li><a href="#sendlink" id="sendlink">Send A Link</a></li>
-	    <li><a href="#about">About</a></li>
+	    <li><a href="#guidelink" id="guidelink">Guide</a></li>
+	    <li><a href="#sendlink" id="sendlink">SendLink</a></li>
+	    <li><a href="#aboutlink" id="aboutlink">About</a></li>
 	  </ul>
 	</nav>
       </section>
@@ -54,6 +54,33 @@
 	<video id="video" autoplay></video>
 	<canvas id="sceneoverlay"></canvas>
 	<canvas id="qr-canvas" class="hidden"></canvas>
+      </div>
+    </section>
+    <section role="region" id="guide">
+      <header>
+	<h1>Guide</h1>
+	<button id="closeabout"><span class="icon icon-close">close</span></button>
+      </header>
+      <div role="main">
+	<div class="container">
+	  <ol>
+	    <li>
+	      <div class="circle number">1</div>
+	      <div>Open LinkPusheen on both of your device</div>
+	    </li>
+	    <li><div class="circle number">2</div>Click Send Link on Sender device</li>
+	    <li><div class="circle number">3</div>Target camera of Sender to QRCode of Receiver</li>
+	    <li><div class="circle number">4</div>Transmission complete!</li>
+	  </ol>
+	</div>
+      </div>
+    </section>
+    <section role="region" id="about">
+      <header>
+	<h1>About</h1>
+	<button id="closeabout"><span class="icon icon-close">close</span></button>
+      </header>
+      <div role="main">
       </div>
     </section>
   </body>

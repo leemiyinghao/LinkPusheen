@@ -26,10 +26,18 @@ section[role="region"] > header:first-child h1 {
 .hidden{
     display: none;
 }
-#index #drawer{
+.circle{
+    border-radius: 50%;
+}
+#index #drawer,
+#guide,
+#about{
     text-align: center;
     background: url("/img/background.jpg") center center;
     background-size: cover;
+}
+#index #drawer p{
+    color: #ffffff;
 }
 #index #qrcode img{
     padding: 15px;
@@ -84,4 +92,36 @@ video{
     right: 15px;
     border-radius: 15px 15px 0 0;
     z-index: 20;
+}
+[role="main"]{
+    height: 100%;
+    overflow-y: scroll;
+}
+[role="main"]:last-child{
+    margin-bottom: 50px;
+}
+[role="main"] .container{
+    padding: 30px 15px;
+    background-color: rgba(0,0,0,0.3);
+    color: #FFFFFF;
+    max-width: 700px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+[role="main"] .container li{
+    line-height: 4.5rem;
+    text-align: left;
+}
+[role="main"] .container li .number{
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 50px;
+    width: 50px;
+    display: inline-block;
+    margin: 15px 15px 0 0;
+    border: solid 2px #FFFFFF;
+}
+[role="main"] .container li div{
+    display: inline-block;
 }
