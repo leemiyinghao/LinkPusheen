@@ -29,6 +29,12 @@ section[role="region"] > header:first-child h1 {
 .circle{
     border-radius: 50%;
 }
+.left{
+    text-align: left;
+}
+.clearboth{
+    clear: both;
+}
 #index #drawer,
 #guide,
 #about{
