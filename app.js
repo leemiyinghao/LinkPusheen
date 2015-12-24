@@ -95,19 +95,6 @@ LinkPusheen.prototype = {
 	window.addEventListener("click", this, false);
     },
 };
-function Socket(){
-    this.socket = null;
-};
-Socket.prototype = {
-    __init__: function(onConnect, onGetUrl){
-	this.socket = io("http://linkpusheen.longcat.tw/");
-	this.addListeners(onConnect, onGetUrl);
-    },
-    addListeners: function(onConnect, onGetUrl){
-	this.socket.on('giveUrl', onGetUrl);
-	this.socket.on('connect', onConnect);
-    }
-};
 function SceneCover(id){
     this.canvas = document.getElementById(id);
     this.canvas.width = 300;
